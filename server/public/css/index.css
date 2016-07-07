@@ -16,6 +16,6 @@ p.word {
   font-size:120px;
 }
 
-#won, #failure {
+#won, #failed {
   margin-top:20px;
 }

@@ -7,25 +7,25 @@ block body
     .row
       .input-group
         .input-group-btn
-          button(id="btn-start-game", class="btn btn-primary") Start new game
-        input(id="new-game-word", type="password", autocomplete="off", placeholder="Type any word here or leave blank for random.", class="form-control")
-    .row(id="error", class="hidden")
+          button(id="btn-start-game", class="btn btn-primary", ng-click="startNewGame()") Start new game
+        input(id="new-game-word", type="password", autocomplete="off", placeholder="Type any word here or leave blank for random.", class="form-control", ng-model="newWord")
+    .row(id="error", ng-show="error")
       div.alert.alert-danger
-        span.lead
-    .row(id="puzzle", class="hidden")
-      span
-    .row(id="remaining", class="hidden")
-      span.lead
-    .row(id="letters", class="hidden")
+        span.lead {{error}}
+    .row(id="puzzle", ng-show="inProgress()")
+      span {{letters}}
+    .row(id="remaining", ng-show="inProgress()")
+      span.lead {{remainingMissesCount === 1 ? 'You have only one more chance.' : 'You can only miss ' + remainingMissesCount + ' times.'}}
+    .row(id="letters", ng-show="inProgress()")
       each val, i in '1234567890abcdefghijklmnopqrstuvwxyz'.split('')
         if (i % 10 === 0)
           .row
-        button(id="letter-" + val, data-letter=val, class="btn btn-default btn-info")= val.toUpperCase()
-    .row(id="won", class="hidden")
+        button(ng-click="guessLetter('" + val + "')", ng-disabled="guessed('" + val + "')" class="btn btn-default btn-info")= val.toUpperCase()
+    .row(id="won", ng-show="won()")
       div.alert.alert-success
         span.lead Congratulations! You Won! The word is:
-        p.word
-    .row(id="failure", class="hidden")
+        p.word {{word}}
+    .row(id="failed", ng-show="failed()")
       div.alert.alert-danger
         span.lead Ohhh! You lost... But you can always try again. The word is:
-        p.word
+        p.word {{word}}

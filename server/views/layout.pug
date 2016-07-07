@@ -1,5 +1,5 @@
 doctype html
-html
+html(ng-app="hangmanApp")
   head
     title Hangman Game
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
@@ -8,10 +8,9 @@ html
     link(rel='shortcut icon', type='image/png', href='/public/favicon.ico')
     block head
 
-  body
+  body(ng-controller="HangmanController")
     block body
 
-    script(src='/public/js/jquery.min.js')
-    script(src='/public/js/bootstrap.min.js')
+    script(src='/public/js/angular.min.js')
     script(src='/public/js/index.js')
     block scripts

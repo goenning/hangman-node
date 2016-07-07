@@ -1,5 +1,4 @@
 # TODO
-- refactor front-end javascript
 - look for memory leeks -> https://www.toptal.com/nodejs/debugging-memory-leaks-node-js-applications
 
 # The problem

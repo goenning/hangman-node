@@ -1,71 +1,48 @@
-var id;
+var hangmanApp = angular.module('hangmanApp', []);
 
-function doPost(url, data, cb) {
-  $.post(url, data, function(data) {
+hangmanApp.controller('HangmanController', ['$scope', '$http', function($scope, $http) {
 
-    if (data.success)
-      cb(data);
-    else
-      showError(data.error);
+  $scope.guesses = [ ];
 
-  }, 'json').fail(function() {
-    showError('Something went wrong, maybe the server is down.');
-  });
-}
+  $scope.inProgress = function() { return $scope.status === 1; };
+  $scope.won = function() { return $scope.status === 2; };
+  $scope.failed = function() { return $scope.status === 3; };
 
-function clickStartNewGame() {
-  var newGameWord = $('#new-game-word');
-  var word = newGameWord.val();
-  newGameWord.val('');
+  $scope.request = function(url, data, cb) {
+    return $http.post(url, data).then(function(res) {
+      if (res.data.success)
+        cb(res.data);
+      else
+        $scope.error = res.data.error;
+      return res.data;
+    }).catch(function(e) {
+      $scope.error = 'Something went wrong, maybe the server is down.';
+    });
+  };
 
-  doPost('/game/new', { id: id, word: word }, function(data) {
-    $('#puzzle, #letters, #remaining').removeClass('hidden');
+  $scope.guessed = function(letter) {
+    return $scope.guesses.indexOf(letter) >= 0;
+  };
 
-    id = data.id;
-    showStatus(data);
-    $('#letters button').addClass('btn-info').removeClass('btn-disabled').removeAttr('disabled');
-  });
-}
+  $scope.refresh = function(data) {
+    $scope.id = data.id;
+    $scope.word = data.word;
+    $scope.status = data.status;
+    $scope.guesses = data.guesses;
+    $scope.letters = data.letters.join(' ');
+    $scope.remainingMissesCount = data.remainingMissesCount;
+    $scope.error = undefined;
+    return data;
+  };
 
-function clickLetter(letter) {
-  var button = $(this);
+  $scope.startNewGame = function() {
+    $scope.request('/game/new', { id: $scope.id, word: $scope.newWord }, $scope.refresh).then(function(){
+      $scope.newWord = '';
+    });
+  };
 
-  doPost('/game/guess', { id: id, letter: button.data('letter') }, function(data) {
-    showStatus(data);
-    button.addClass('btn-disabled').removeClass('btn-info').attr('disabled', 'disabled');
-  });
-}
+  $scope.guessLetter = function(letter, $event) {
+    $scope.request('/game/guess', { id: $scope.id, letter: letter }, $scope.refresh);
+  };
 
-function showError(error) {
-  $('#error').removeClass('hidden');
-  $('#error span').html(error);
-}
-
-function showStatus(data) {
-  $('#won, #failure, #error').addClass('hidden');
-
-  if (data.status === 1) {
-    $('#puzzle span').html(data.letters.join(' '));
-    $('#remaining span').html(data.remainingMissesCount === 1 ? 'You have only one more chance.' : 'You can only miss ' + data.remainingMissesCount + ' times.');
-    return;
-  }
-
-  if (data.status === 2) {
-    $('#puzzle, #letters, #remaining').addClass('hidden');
-    $('#won').removeClass('hidden');
-    $('#won .word').html(data.word);
-    return;
-  }
-
-  if (data.status === 3) {
-    $('#puzzle, #letters, #remaining').addClass('hidden');
-    $('#failure').removeClass('hidden');
-    $('#failure .word').html(data.word);
-    return;
-  }
-}
-
-$(function() {
-  $('#btn-start-game').click(clickStartNewGame);
-  $('#letters button').click(clickLetter);
-});
+}]);
