@@ -20,12 +20,7 @@ const cli = meow({
 
 clear();
 
-if (cli.input.length == 0) {
-  cli.showHelp();
-  return;
-}
-
-const commandName = cli.input[0];
+const commandName = (cli.input.length > 0) ? cli.input[0] : undefined;
 const command = commands[commandName];
 if (command)
   command(cli);

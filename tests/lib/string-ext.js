@@ -6,7 +6,7 @@ const expect = require('chai').expect;
 describe('String extension', () => {
 
   [
-    { word: 'Marvin', letter: '', indexes: [ ] },
+    { word: 'Marvin', letter: '',  indexes: [ ] },
     { word: 'Marvin', letter: ' ', indexes: [ ] },
     { word: 'Marvin', letter: 'x', indexes: [ ] },
     { word: 'Marvin', letter: 'm', indexes: [ ] },

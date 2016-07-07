@@ -22,7 +22,7 @@ describe('Hangman', () => {
   });
 
   it('should use the given word', () => {
-    const hangman = new Hangman('Shirt', options);
+    const hangman = new Hangman('Shirt');
     expect(hangman.getWord()).to.be.equal('Shirt');
   });
 
@@ -30,6 +30,11 @@ describe('Hangman', () => {
     const hangman = new Hangman();
     expect(hangman.getWord()).to.be.oneOf(defaultOptions.availableWords);
     expect(hangman.getRemainingMissesCount()).to.be.equal(defaultOptions.maxMisses);
+  });
+
+  it('should return a random word when word is undefined but options is set', () => {
+    const hangman = new Hangman(options);
+    expect(hangman.getWord()).to.be.oneOf(options.availableWords);
   });
 
   [ '', undefined, null].forEach((word) => {
@@ -51,7 +56,7 @@ describe('Hangman', () => {
   });
 
   it('should not add to miss list, but add to guess list, when guessing right letter', () => {
-    const hangman = new Hangman('Shirt', options);
+    const hangman = new Hangman('Shirt');
 
     const found = hangman.guess('s');
     expect(found).to.be.true;
@@ -60,7 +65,7 @@ describe('Hangman', () => {
   });
 
   it('should not add to miss/guess list when guessing the same wrong letter twice', () => {
-    const hangman = new Hangman('Shirt', options);
+    const hangman = new Hangman('Shirt');
 
     hangman.guess('e');
     hangman.guess('e');
@@ -70,25 +75,25 @@ describe('Hangman', () => {
   });
 
   it('should not change status when guessing wrong letter', () => {
-    const hangman = new Hangman('Shirt', options);
+    const hangman = new Hangman('Shirt');
     hangman.guess('k');
     expect(hangman.getLetters()).to.deep.equal(['_', '_', '_', '_', '_']);
   });
 
   it('should add letter to status when guessing right letter', () => {
-    const hangman = new Hangman('Shirt', options);
+    const hangman = new Hangman('Shirt');
     hangman.guess('s');
     expect(hangman.getLetters()).to.deep.equal(['S', '_', '_', '_', '_']);
   });
 
   it('should add letter to both spaces when guessing letter with more than 1 occurrence', () => {
-    const hangman = new Hangman('Order', options);
+    const hangman = new Hangman('Order');
     hangman.guess('r');
     expect(hangman.getLetters()).to.deep.equal(['_', 'r', '_', '_', 'r']);
   });
 
   it('should change status to Won when guessed the whole word', () => {
-    const hangman = new Hangman('Order', options);
+    const hangman = new Hangman('Order');
     hangman.guess('o');
     hangman.guess('d');
     hangman.guess('r');
@@ -118,7 +123,7 @@ describe('Hangman', () => {
     });
   });
 
-  [ '', '@', ' ', [], {}, '`', '[', 'ab', '12', '+', '_', '.', '-'].forEach((letter) => {
+  [ '', '@', undefined, null, ' ', [], {}, '`', '[', 'ab', '12', '+', '_', '.', '-'].forEach((letter) => {
     it(`should throw error when guessing '${letter}'`, () => {
       const hangman = new Hangman('Order');
       expect(hangman.guess.bind(hangman, letter)).to.throw(`'${letter}' is not a valid letter.`);
