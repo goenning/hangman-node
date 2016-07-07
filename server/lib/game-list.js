@@ -1,11 +1,13 @@
 'use strict';
 
+const TIMEOUT = 60;
+const TIMEOUT_CHECK = 10;
+
 const eol = require('os').EOL;
 const now = process.hrtime;
 const out = process.stdout;
 
 const GameList = function() {
-  console.log('New Game List');
   const all = { };
 
   this.add = (id, game) => {
@@ -23,15 +25,19 @@ const GameList = function() {
     }
   };
 
+  this.delete = (id) => {
+    delete all[id];
+  };
+
   setInterval(() => {
     for(const key in all) {
       const diff = now(all[key].lastActiveAt);
-      if (diff[0] >= 60) {
+      if (diff[0] >= TIMEOUT) {
         out.write(`Game instance '${key}' was deleted due to inactiveness.${eol}`);
-        delete all[key];
+        this.delete(key);
       }
     }
-  }, 1 * 10 * 1000);
+  }, TIMEOUT_CHECK * 1000);
 };
 
 module.exports = GameList;

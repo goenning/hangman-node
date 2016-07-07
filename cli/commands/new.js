@@ -33,7 +33,7 @@ show[Hangman.Status.Won] = (hangman) => {
 
 show[Hangman.Status.Failed] = (hangman) => {
   clear();
-  stdout.write(`Ohhh! You lost... But you can always try again. The word is: ${hangman.getWord()}`);
+  stdout.write(`Ohhh! You lost... But you can always try agastdin. The word is: ${hangman.getWord()}`);
   skipLine();
   process.exit();
 };

@@ -46,10 +46,10 @@ There is also a CLI for the game. Try it out:
 $ cd path/to/hangman
 $ npm install         #if not yet installed
 $ npm link            # you may need sudo to run this
-$ hangman             # to see the help
+$ hangman             # to see the instructions
 ```
 
-If `hangman` command does not work or you don't want to link it, you can also run it directly with `node ./cli/index.js`.
+If `hangman` you don't want to link it, it is also possible to run it directly with `node ./cli/index.js`.
 
 # How to run it in a cluster
 

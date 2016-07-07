@@ -26,7 +26,7 @@ const currentState = (id) => {
   };
 
   if (gameStatus !== Hangman.Status.InProgress)
-    delete games[id];
+    games.delete(id);
 
   return response;
 };
