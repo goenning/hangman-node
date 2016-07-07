@@ -1,7 +1,7 @@
 {
   "name": "hangman",
   "version": "1.0.0",
-  "description": "",
+  "description": "A simple hangman game made during 3DHubs application",
   "main": "./lib/index.js",
   "bin": {
     "hangman": "./cli/index.js"
@@ -12,8 +12,13 @@
     "lint": "eslint .",
     "test": "mocha tests/lib/ tests/server/ -c"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Guilherme Oenning <oenning.ti@gmail.com> (http://goenning.net/)",
+  "license": "MIT",
+  "tags": [
+    "hangman",
+    "game"
+  ],
+  "readmeFilename": "README.md",
   "dependencies": {
     "body-parser": "^1.15.2",
     "clear": "0.0.1",

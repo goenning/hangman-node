@@ -1,9 +1,12 @@
 # TODO
 update package.json
-- readme file, author, license, description, private
-- remove unfinished games
+- remove unfinished games instance
+- refactor more
+- check code coverage
 - unittest for server
 - update this readme
+- test node 4, 5 and 6
+- docker
 
 
 # Requirements
