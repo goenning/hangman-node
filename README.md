@@ -1,6 +1,3 @@
-# TODO
-- look for memory leeks -> https://www.toptal.com/nodejs/debugging-memory-leaks-node-js-applications
-
 # The problem
 
 Build a simple HANGMAN game that works as follows:
@@ -28,17 +25,17 @@ If all went well, just run:
 $ npm start
 ```
 
-Navigate to http://localhost:8080/ to start playing.
+Navigate to http://localhost:9090/ to start playing.
 
 ## How to run it with Docker
 
 ```
 $ cd path/to/hangman
 $ docker build -t hangman .
-$ docker run -p -t 8080:8080 hangman
+$ docker run -t -p 9090:9090 hangman
 ```
 
-Navigate to http://localhost:8080/ to start playing.
+Navigate to http://localhost:9090/ to start playing.
 
 # Bonus!
 
