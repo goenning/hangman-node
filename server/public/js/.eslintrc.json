@@ -1,0 +1,14 @@
+{
+  "extends": "eslint:recommended",
+  "root": true,
+  "env": {
+    "jquery": true,
+    "browser": true
+  },
+  "rules": {
+    "semi": ["error", "always"],
+    "no-unused-vars": ["error", { "vars": "all", "args": "none" }],
+    "quotes": ["error", "single", { "avoidEscape": true } ],
+    "space-before-function-paren": ["error", "never"]
+  }
+}

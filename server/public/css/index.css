@@ -1,0 +1,21 @@
+#puzzle {
+  font-size:120px;
+}
+
+#error {
+  margin-top:5px;
+}
+
+#letters button {
+  font-family: monospace;
+  margin: 5px 5px 5px 0px;
+}
+
+p.word {
+  font-weight: bold;
+  font-size:120px;
+}
+
+#won, #failure {
+  margin-top:20px;
+}
