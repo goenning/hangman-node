@@ -1,6 +1,6 @@
 'use strict';
 
-const TIMEOUT = 60;
+const TIMEOUT = 300;
 const TIMEOUT_CHECK = 10;
 
 const eol = require('os').EOL;

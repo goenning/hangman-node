@@ -1,7 +1,4 @@
 # TODO
-- (H) test node 4, 5 and 6
-- (H) dockerfile and update this readme
-- refactor more
 - refactor front-end javascript
 - look for memory leeks -> https://www.toptal.com/nodejs/debugging-memory-leaks-node-js-applications
 
@@ -36,7 +33,13 @@ Navigate to http://localhost:8080/ to start playing.
 
 ## How to run it with Docker
 
-Pending...
+```
+$ cd path/to/hangman
+$ docker build -t hangman .
+$ docker run -p -t 8080:8080 hangman
+```
+
+Navigate to http://localhost:8080/ to start playing.
 
 # Bonus!
 
