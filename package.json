@@ -11,8 +11,8 @@
     "start": "node ./server/www.js",
     "start-dev": "nodemon ./server/www.js",
     "lint": "eslint .",
-    "test": "mocha tests/lib/ tests/server/ -c",
-    "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha -- tests/lib/ tests/server/ -R spec"
+    "test": "NODE_ENV=test mocha tests/lib/ tests/server/ -c",
+    "coverage": "NODE_ENV=test istanbul cover ./node_modules/mocha/bin/_mocha -- tests/lib/ tests/server/ -R spec"
   },
   "license": "UNLICENSED",
   "author": "Guilherme Oenning <oenning.ti@gmail.com> (http://goenning.net/)",

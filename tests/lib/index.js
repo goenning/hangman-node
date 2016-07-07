@@ -32,8 +32,13 @@ describe('Hangman', () => {
     expect(hangman.getRemainingMissesCount()).to.be.equal(defaultOptions.maxMisses);
   });
 
-  it('should return a random word when word is undefined but options is set', () => {
+  it('should return a random word when word is not set but options is set', () => {
     const hangman = new Hangman(options);
+    expect(hangman.getWord()).to.be.oneOf(options.availableWords);
+  });
+
+  it('should return a random word when word is undefined but options is set', () => {
+    const hangman = new Hangman(undefined, options);
     expect(hangman.getWord()).to.be.oneOf(options.availableWords);
   });
 

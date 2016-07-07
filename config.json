@@ -1,4 +1,4 @@
 {
-  "availableWords": [ "3dhubs", "marvin", "print", "filament", "order", "layer" ],
-  "maxMisses": 5
+  "availableWords": [ "3dhubs" ],
+  "maxMisses": 1
 }

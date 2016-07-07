@@ -6,6 +6,7 @@ const expect = require('chai').expect;
 const async = require('async');
 
 let id;
+
 const startGame = (word, cb) => request(app).post('/game/new').send({ word }).end((err, res) => {
   id = res.body.id;
   cb(err, res);
@@ -62,9 +63,9 @@ describe('Hangman server', () => {
 
       expect(results.guessN.body.success).to.be.true;
       expect(results.guessN.body.status).to.be.equal(2);
-      expect(results.guessN.body.word).to.be.equal('banana');
       expect(results.guessN.body.letters).to.deep.equal([ 'b', 'a', 'n', 'a', 'n', 'a' ]);
       expect(results.guessN.body.guesses).to.deep.equal([ 'a', 'b', 'n' ]);
+      expect(results.guessN.body.word).to.be.equal('banana');
       done(err);
     });
   });
