@@ -37,6 +37,11 @@ $ docker run -t -p 9090:9090 hangman
 
 Navigate to http://localhost:9090/ to start playing.
 
+# Configuration
+
+You can set custom settings by changing the `config.json` file.
+The possible keys are `maxMisses` (integer) and `availableWords` (array of strings)
+
 # Bonus!
 
 There is also a CLI for the game. Try it out:
@@ -48,7 +53,7 @@ $ npm link            # you may need sudo to run this
 $ hangman             # to see the instructions
 ```
 
-If `hangman` you don't want to link it, it is also possible to run it directly with `node ./cli/index.js`.
+If you don't want to link it, it's also possible to run it directly with `node ./cli/index.js`.
 
 # How to run it in a cluster
 

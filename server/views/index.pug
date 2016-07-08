@@ -3,29 +3,36 @@ extend layout
 block body
   .container
     .row
-      h1 Hangman Game
-    .row
-      .input-group
-        .input-group-btn
-          button(id="btn-start-game", class="btn btn-primary", ng-click="startNewGame()") Start new game
-        input(id="new-game-word", type="password", autocomplete="off", placeholder="Type any word here or leave blank for random.", class="form-control", ng-model="newWord")
+      .col-md-6.col-sm-9
+        h1 Hangman Game
+        .input-group
+          input(id="new-game-word", type="password", autocomplete="off", placeholder="Type any word here or leave blank for random.", class="form-control", ng-model="newWord")
+          .input-group-btn
+            button(id="btn-start-game", class="btn btn-primary", ng-click="startNewGame()") Start new game
+
     .row(id="error", ng-show="error")
-      div.alert.alert-danger
-        span.lead {{error}}
+      .col-md-6
+        div.alert.alert-danger
+          span.lead {{error}}
     .row(id="puzzle", ng-show="inProgress()")
-      span {{letters}}
+      .col-md-6
+        span {{letters}}
     .row(id="remaining", ng-show="inProgress()")
-      span.lead {{remainingMissesCount === 1 ? 'You have only one more chance.' : 'You can only miss ' + remainingMissesCount + ' times.'}}
+      .col-md-6
+        span.lead {{remainingMissesCount === 1 ? 'You have only one more chance.' : 'You can only miss ' + remainingMissesCount + ' times.'}}
     .row(id="letters", ng-show="inProgress()")
-      each val, i in '1234567890abcdefghijklmnopqrstuvwxyz'.split('')
-        if (i % 10 === 0)
-          .row
-        button(ng-click="guessLetter('" + val + "')", ng-disabled="guessed('" + val + "')" class="btn btn-default btn-info")= val.toUpperCase()
+      .col-md-6
+        each val, i in '1234567890abcdefghijklmnopqrstuvwxyz'.split('')
+          if (i % 10 === 0)
+            .row
+          button(ng-click="guessLetter('" + val + "')", ng-disabled="guessed('" + val + "')" class="btn btn-default btn-info")= val.toUpperCase()
     .row(id="won", ng-show="won()")
-      div.alert.alert-success
-        span.lead Congratulations! You Won! The word is:
-        p.word {{word}}
+      .col-md-6
+        div.alert.alert-success
+          span.lead Congratulations! You Won! The word is:
+          p.word {{word}}
     .row(id="failed", ng-show="failed()")
-      div.alert.alert-danger
-        span.lead Ohhh! You lost... But you can always try again. The word is:
-        p.word {{word}}
+      .col-md-6
+        div.alert.alert-danger
+          span.lead Ohhh! You lost... But you can always try again. The word is:
+          p.word {{word}}
