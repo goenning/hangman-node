@@ -11,28 +11,28 @@ block body
             button(id="btn-start-game", class="btn btn-primary", ng-click="startNewGame()") Start new game
 
     .row(id="error", ng-show="error")
-      .col-md-6
+      .col-md-12
         div.alert.alert-danger
           span.lead {{error}}
     .row(id="puzzle", ng-show="inProgress()")
-      .col-md-6
+      .col-md-12
         span {{letters}}
     .row(id="remaining", ng-show="inProgress()")
-      .col-md-6
+      .col-md-12
         span.lead {{remainingMissesCount === 1 ? 'You have only one more chance.' : 'You can only miss ' + remainingMissesCount + ' times.'}}
     .row(id="letters", ng-show="inProgress()")
-      .col-md-6
+      .col-md-12
         each val, i in '1234567890abcdefghijklmnopqrstuvwxyz'.split('')
           if (i % 10 === 0)
             .row
-          button(ng-click="guessLetter('" + val + "')", ng-disabled="guessed('" + val + "')" class="btn btn-default btn-info")= val.toUpperCase()
+          button(ng-click="guessLetter('" + val + "')", ng-class="cssForLetter('" + val + "')", ng-disabled="guessed('" + val + "')" class="btn btn-default")= val.toUpperCase()
     .row(id="won", ng-show="won()")
-      .col-md-6
+      .col-md-12
         div.alert.alert-success
           span.lead Congratulations! You Won! The word is:
           p.word {{word}}
     .row(id="failed", ng-show="failed()")
-      .col-md-6
+      .col-md-12
         div.alert.alert-danger
           span.lead Ohhh! You lost... But you can always try again. The word is:
           p.word {{word}}

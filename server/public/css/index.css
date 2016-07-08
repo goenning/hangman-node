@@ -1,9 +1,9 @@
 #puzzle {
-  font-size:120px;
+  font-size: 120px;
 }
 
 #error {
-  margin-top:5px;
+  margin-top: 5px;
 }
 
 #letters button {
@@ -13,9 +13,9 @@
 
 p.word {
   font-weight: bold;
-  font-size:120px;
+  font-size: 100px;
 }
 
 #won, #failed {
-  margin-top:20px;
+  margin-top: 20px;
 }

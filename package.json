@@ -9,7 +9,6 @@
   },
   "scripts": {
     "start": "node ./server/www.js",
-    "start-dev": "nodemon ./server/www.js",
     "lint": "eslint .",
     "test": "NODE_ENV=test mocha tests/lib/ tests/server/ -c",
     "coverage": "NODE_ENV=test istanbul cover ./node_modules/mocha/bin/_mocha -- tests/lib/ tests/server/ -R spec"
@@ -18,7 +17,8 @@
   "author": "Guilherme Oenning <oenning.ti@gmail.com> (http://goenning.net/)",
   "tags": [
     "hangman",
-    "game"
+    "game",
+    "3dhubs"
   ],
   "readmeFilename": "README.md",
   "dependencies": {
@@ -35,7 +35,6 @@
     "eslint": "^3.0.1",
     "istanbul": "^0.4.4",
     "mocha": "^2.5.3",
-    "nodemon": "^1.9.2",
     "supertest": "^1.2.0"
   }
 }

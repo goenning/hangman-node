@@ -3,6 +3,7 @@ var hangmanApp = angular.module('hangmanApp', []);
 hangmanApp.controller('HangmanController', ['$scope', '$http', function($scope, $http) {
 
   $scope.guesses = [ ];
+  $scope.letters = [ ];
 
   $scope.inProgress = function() { return $scope.status === 1; };
   $scope.won = function() { return $scope.status === 2; };
@@ -23,6 +24,16 @@ hangmanApp.controller('HangmanController', ['$scope', '$http', function($scope, 
   $scope.guessed = function(letter) {
     return $scope.guesses.indexOf(letter) >= 0;
   };
+
+  $scope.cssForLetter = function(letter) {
+    if ($scope.letters.indexOf(letter) >= 0)
+      return 'btn-success';
+
+    if ($scope.guesses.indexOf(letter) >= 0)
+      return 'btn-danger';
+
+      return 'btn-info';
+  }
 
   $scope.refresh = function(data) {
     $scope.id = data.id;
