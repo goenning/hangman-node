@@ -33,7 +33,7 @@ hangmanApp.controller('HangmanController', ['$scope', '$http', function($scope, 
       return 'btn-danger';
 
       return 'btn-info';
-  }
+  };
 
   $scope.refresh = function(data) {
     $scope.id = data.id;

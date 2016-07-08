@@ -27,7 +27,7 @@ describe('Hangman server', () => {
 
   it('should start new game when posting to /game/new', (done) => {
     async.series({
-      start: (cb) => startGame('banana', cb),
+      start: (cb) => startGame('banana', cb)
     }, (err, results) => {
       expect(results.start.body.success).to.be.true;
       expect(results.start.body.status).to.be.equal(1);
@@ -40,7 +40,7 @@ describe('Hangman server', () => {
   it('should add to guess list when posting to /game/guess', (done) => {
     async.series({
       start: (cb) => startGame('banana', cb),
-      guessA: (cb) => sendLetter('a', cb),
+      guessA: (cb) => sendLetter('a', cb)
     }, (err, results) => {
       expect(results.guessA.body.success).to.be.true;
       expect(results.guessA.body.status).to.be.equal(1);
@@ -108,7 +108,7 @@ describe('Hangman server', () => {
   it('should return a failure response when trying to start a game with invalid word', (done) => {
     id = undefined;
     async.series({
-      start: (cb) => startGame('3d@hubs', cb),
+      start: (cb) => startGame('3d@hubs', cb)
     }, (err, results) => {
       expect(Object.keys(results.start.body)).to.deep.equal(['success', 'error']);
       expect(results.start.body.success).to.be.false;
