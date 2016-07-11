@@ -2,7 +2,7 @@
   "name": "hangman",
   "version": "1.0.0",
   "private": true,
-  "description": "A simple hangman game made during 3DHubs application",
+  "description": "A simple hangman game",
   "main": "./lib/index.js",
   "bin": {
     "hangman": "./cli/index.js"
@@ -17,8 +17,7 @@
   "author": "Guilherme Oenning <oenning.ti@gmail.com> (http://goenning.net/)",
   "tags": [
     "hangman",
-    "game",
-    "3dhubs"
+    "game"
   ],
   "readmeFilename": "README.md",
   "dependencies": {
